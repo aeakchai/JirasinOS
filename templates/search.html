@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>ผลการค้นหา</title>
+
+<style>
+
+body{
+
+font-family:Arial;
+
+width:900px;
+
+margin:auto;
+
+margin-top:40px;
+
+}
+
+.card{
+
+border:1px solid #ddd;
+
+padding:15px;
+
+margin-bottom:15px;
+
+border-radius:8px;
+
+}
+
+.btn{
+
+display:inline-block;
+
+margin-top:10px;
+
+margin-right:10px;
+
+padding:8px 12px;
+
+background:#0d6efd;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:5px;
+
+}
+
+.btn2{
+
+background:#198754;
+
+}
+
+</style>
+
+<script>
+
+function copyPath(path){
+
+navigator.clipboard.writeText(path);
+
+alert("คัดลอก Path แล้ว");
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h2>ผลการค้นหา "{{keyword}}"</h2>
+
+{% if results %}
+
+{% for item in results %}
+
+<div class="card">
+
+<h3>{{item.name}}</h3>
+
+<div>{{item.folder}}</div>
+
+<a class="btn"
+href="/open?path={{item.path}}">
+
+📄 เปิดไฟล์
+
+</a>
+
+<a class="btn btn2"
+href="/folder?path={{item.path}}">
+
+📂 เปิดโฟลเดอร์
+
+</a>
+
+<button
+onclick="copyPath('{{item.path}}')">
+
+📋 Copy Path
+
+</button>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<h3>ไม่พบไฟล์</h3>
+
+{% endif %}
+
+<br>
+
+<a href="/">กลับ</a>
+
+</body>
+
+</html>
