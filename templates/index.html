@@ -1,65 +1,37 @@
-<!DOCTYPE html>
-<html lang="th">
+{% extends "base.html" %}
 
-<head>
+{% block content %}
 
-<meta charset="UTF-8">
+<div class="container-fluid">
 
-<title>Jirasin OS</title>
+    <h2 class="mb-4">
+        <i class="bi bi-search"></i>
+        Search Files
+    </h2>
 
-<style>
+    <form action="/search" method="get">
 
-body{
+        <div class="input-group input-group-lg">
 
-font-family:Arial;
+            <input
+                class="form-control"
+                name="keyword"
+                placeholder="ค้นหาชื่อไฟล์ เช่น PDF DXF STEP..."
+                autofocus>
 
-width:900px;
+            <button
+                class="btn btn-primary">
 
-margin:auto;
+                <i class="bi bi-search"></i>
 
-margin-top:50px;
+                Search
 
-}
+            </button>
 
-input{
+        </div>
 
-width:500px;
+    </form>
 
-padding:12px;
+</div>
 
-font-size:18px;
-
-}
-
-button{
-
-padding:12px 20px;
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<h1>🚀 Jirasin OS</h1>
-
-<form action="/search">
-
-<input
-name="keyword"
-placeholder="ค้นหาไฟล์..."
-required>
-
-<button>
-
-ค้นหา
-
-</button>
-
-</form>
-
-</body>
-
-</html>
+{% endblock %}

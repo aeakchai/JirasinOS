@@ -1,34 +1,19 @@
-from pathlib import Path
-
-SEARCH_PATHS = [
-    Path.home() / "Desktop",
-]
+from app.indexer import get_index
 
 
-def search_files(keyword):
+def search_files(keyword: str):
 
     keyword = keyword.strip().lower()
 
-    if keyword == "":
+    if not keyword:
         return []
 
     results = []
 
-    for folder in SEARCH_PATHS:
+    for item in get_index():
 
-        if not folder.exists():
-            continue
+        if keyword in item["name"].lower():
 
-        for file in folder.rglob("*"):
-
-            if file.is_file() and keyword in file.name.lower():
-
-                results.append({
-                    "name": file.name,
-                    "folder": str(file.parent),
-                    "path": str(file)
-                })
-
-    results.sort(key=lambda x: x["name"])
+            results.append(item)
 
     return results

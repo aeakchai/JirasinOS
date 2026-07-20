@@ -1,28 +1,40 @@
-from pathlib import Path
-import subprocess
-
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from app.file_search import search_files
+from app.file_sender import send_file
+from app.indexer import build_index
 
-app = FastAPI()
+app = FastAPI(title="JirasinOS")
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
 
 
+@app.on_event("startup")
+async def startup_event():
+    build_index()
+
+
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
+
     return templates.TemplateResponse(
         request=request,
         name="index.html",
-        context={}
+        context={},
     )
 
 
 @app.get("/search", response_class=HTMLResponse)
-def search(request: Request, keyword: str = ""):
+def search(
+    request: Request,
+    keyword: str = "",
+    message: str = "",
+):
 
     results = search_files(keyword)
 
@@ -31,24 +43,18 @@ def search(request: Request, keyword: str = ""):
         name="search.html",
         context={
             "keyword": keyword,
-            "results": results
-        }
+            "results": results,
+            "message": message,
+        },
     )
 
 
-@app.get("/open")
-def open_file(path: str):
+@app.get("/send")
+def send(path: str, keyword: str = ""):
 
-    subprocess.Popen(["explorer", path])
+    success, message = send_file(path)
 
-    return RedirectResponse("/", status_code=302)
-
-
-@app.get("/folder")
-def open_folder(path: str):
-
-    p = Path(path)
-
-    subprocess.Popen(["explorer", "/select,", str(p)])
-
-    return RedirectResponse("/", status_code=302)
+    return RedirectResponse(
+        url=f"/search?keyword={keyword}&message={message}",
+        status_code=303,
+    )

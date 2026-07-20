@@ -1,114 +1,79 @@
-<!DOCTYPE html>
-<html lang="th">
+{% extends "base.html" %}
 
-<head>
+{% block content %}
 
-<meta charset="UTF-8">
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>
+        <i class="bi bi-search"></i>
+        ผลการค้นหา "{{ keyword }}"
+    </h2>
 
-<title>ผลการค้นหา</title>
+    {% if results %}
+    <span class="badge bg-primary fs-6">
+        {{ results|length }} รายการ
+    </span>
+    {% endif %}
+</div>
 
-<style>
+{% if message %}
 
-body{
+<div class="alert alert-success shadow-sm">
+    <i class="bi bi-check-circle-fill"></i>
+    {{ message }}
+</div>
 
-font-family:Arial;
-
-width:900px;
-
-margin:auto;
-
-margin-top:40px;
-
-}
-
-.card{
-
-border:1px solid #ddd;
-
-padding:15px;
-
-margin-bottom:15px;
-
-border-radius:8px;
-
-}
-
-.btn{
-
-display:inline-block;
-
-margin-top:10px;
-
-margin-right:10px;
-
-padding:8px 12px;
-
-background:#0d6efd;
-
-color:white;
-
-text-decoration:none;
-
-border-radius:5px;
-
-}
-
-.btn2{
-
-background:#198754;
-
-}
-
-</style>
-
-<script>
-
-function copyPath(path){
-
-navigator.clipboard.writeText(path);
-
-alert("คัดลอก Path แล้ว");
-
-}
-
-</script>
-
-</head>
-
-<body>
-
-<h2>ผลการค้นหา "{{keyword}}"</h2>
+{% endif %}
 
 {% if results %}
 
 {% for item in results %}
 
-<div class="card">
+<div class="card shadow-lg border-0 mb-3">
 
-<h3>{{item.name}}</h3>
+    <div class="card-body">
 
-<div>{{item.folder}}</div>
+        <div class="d-flex justify-content-between">
 
-<a class="btn"
-href="/open?path={{item.path}}">
+            <div>
 
-📄 เปิดไฟล์
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-file-earmark-richtext text-primary"></i>
+                    {{ item.name }}
+                </h5>
 
-</a>
+                <div class="mb-2">
+                    📂 {{ item.folder }}
+                </div>
 
-<a class="btn btn2"
-href="/folder?path={{item.path}}">
+                <div class="text-muted">
 
-📂 เปิดโฟลเดอร์
+                    📅 {{ item.modified }}
 
-</a>
+                    &nbsp;&nbsp;&nbsp;
 
-<button
-onclick="copyPath('{{item.path}}')">
+                    📦 {{ item.size }}
 
-📋 Copy Path
+                </div>
 
-</button>
+            </div>
+
+            <div class="text-end">
+
+                <a
+                    class="btn btn-success btn-lg"
+                    href="/send?path={{ item.path }}&keyword={{ keyword }}">
+
+                    <i class="bi bi-send-fill"></i>
+
+                    ส่งเข้า Jirasin789
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -116,14 +81,14 @@ onclick="copyPath('{{item.path}}')">
 
 {% else %}
 
-<h3>ไม่พบไฟล์</h3>
+<div class="alert alert-warning shadow-sm">
+
+    <i class="bi bi-exclamation-triangle"></i>
+
+    ไม่พบไฟล์ DXF
+
+</div>
 
 {% endif %}
 
-<br>
-
-<a href="/">กลับ</a>
-
-</body>
-
-</html>
+{% endblock %}
