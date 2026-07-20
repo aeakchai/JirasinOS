@@ -45,7 +45,7 @@
                     📂 {{ item.folder }}
                 </div>
 
-                <div class="text-muted">
+                <div class="text-muted mb-3">
 
                     📅 {{ item.modified }}
 
@@ -60,12 +60,30 @@
             <div class="text-end">
 
                 <a
-                    class="btn btn-success btn-lg"
+                    class="btn btn-success btn-lg mb-2"
                     href="/send?path={{ item.path }}&keyword={{ keyword }}">
 
                     <i class="bi bi-send-fill"></i>
 
                     ส่งเข้า Jirasin789
+
+                </a>
+
+                <br>
+
+                <a
+                    class="btn btn-outline-primary btn-sm"
+                    href="/open-folder?path={{ item.path }}&keyword={{ keyword }}">
+
+                    📂 เปิดโฟลเดอร์
+
+                </a>
+
+                <a
+                    class="btn btn-outline-secondary btn-sm"
+                    href="/open-file?path={{ item.path }}&keyword={{ keyword }}">
+
+                    📄 เปิดไฟล์
 
                 </a>
 

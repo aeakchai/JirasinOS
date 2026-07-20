@@ -4,10 +4,59 @@
 
 <div class="container-fluid">
 
-    <h2 class="mb-4">
-        <i class="bi bi-search"></i>
-        Search Files
-    </h2>
+    <div class="row mb-4">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-primary">
+                <div class="card-body">
+                    <h6 class="text-muted">DXF Files</h6>
+                    <h3>{{ dashboard.total_files }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-success">
+                <div class="card-body">
+                    <h6 class="text-muted">Search Paths</h6>
+                    <h3>{{ dashboard.search_paths }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-warning">
+                <div class="card-body">
+                    <h6 class="text-muted">Search Engine</h6>
+                    <h5>{{ dashboard.engine }}</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-info">
+                <div class="card-body">
+                    <h6 class="text-muted">Last Index</h6>
+                    <small>{{ dashboard.last_index }}</small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2 class="mb-0">
+            <i class="bi bi-search"></i>
+            Search Files
+        </h2>
+
+        <a href="/refresh" class="btn btn-success">
+            <i class="bi bi-arrow-clockwise"></i>
+            Refresh Index
+        </a>
+
+    </div>
 
     <form action="/search" method="get">
 
@@ -19,13 +68,9 @@
                 placeholder="ค้นหาชื่อไฟล์ เช่น PDF DXF STEP..."
                 autofocus>
 
-            <button
-                class="btn btn-primary">
-
+            <button class="btn btn-primary">
                 <i class="bi bi-search"></i>
-
                 Search
-
             </button>
 
         </div>

@@ -5,6 +5,9 @@ from app.config import SEARCH_PATHS
 # เก็บข้อมูลไฟล์ทั้งหมดไว้ใน RAM
 DXF_INDEX = []
 
+# เวลาที่สร้าง Index ล่าสุด
+LAST_INDEX_TIME = "-"
+
 
 def format_size(size: int) -> str:
     """แปลงขนาดไฟล์ให้อ่านง่าย"""
@@ -19,6 +22,7 @@ def format_size(size: int) -> str:
 def build_index():
 
     global DXF_INDEX
+    global LAST_INDEX_TIME
 
     DXF_INDEX.clear()
 
@@ -66,6 +70,8 @@ def build_index():
         reverse=True,
     )
 
+    LAST_INDEX_TIME = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
     print("=" * 50)
     print(f"Indexed : {total:,} DXF Files")
     print("Ready")
@@ -74,3 +80,12 @@ def build_index():
 
 def get_index():
     return DXF_INDEX
+
+
+def get_dashboard_info():
+    return {
+        "total_files": len(DXF_INDEX),
+        "search_paths": len(SEARCH_PATHS),
+        "last_index": LAST_INDEX_TIME,
+        "engine": "RAM Index",
+    }
