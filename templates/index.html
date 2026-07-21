@@ -1,81 +1,223 @@
 {% extends "base.html" %}
 
+{% block title %}JirasinOS{% endblock %}
+
 {% block content %}
 
-<div class="container-fluid">
+<div class="top-header">
 
-    <div class="row mb-4">
+    <div>
 
-        <div class="col-md-3">
-            <div class="card shadow-sm border-primary">
-                <div class="card-body">
-                    <h6 class="text-muted">DXF Files</h6>
-                    <h3>{{ dashboard.total_files }}</h3>
-                </div>
-            </div>
-        </div>
+        <h1>
 
-        <div class="col-md-3">
-            <div class="card shadow-sm border-success">
-                <div class="card-body">
-                    <h6 class="text-muted">Search Paths</h6>
-                    <h3>{{ dashboard.search_paths }}</h3>
-                </div>
-            </div>
-        </div>
+            <i class="bi bi-cpu-fill"></i>
 
-        <div class="col-md-3">
-            <div class="card shadow-sm border-warning">
-                <div class="card-body">
-                    <h6 class="text-muted">Search Engine</h6>
-                    <h5>{{ dashboard.engine }}</h5>
-                </div>
-            </div>
-        </div>
+            JirasinOS
 
-        <div class="col-md-3">
-            <div class="card shadow-sm border-info">
-                <div class="card-body">
-                    <h6 class="text-muted">Last Index</h6>
-                    <small>{{ dashboard.last_index }}</small>
-                </div>
-            </div>
-        </div>
+        </h1>
+
+        <p>
+
+            AI File Search & NAS Transfer System
+
+        </p>
 
     </div>
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
 
-        <h2 class="mb-0">
-            <i class="bi bi-search"></i>
-            Search Files
-        </h2>
+        <a href="/refresh" class="btn btn-primary refresh-btn">
 
-        <a href="/refresh" class="btn btn-success">
             <i class="bi bi-arrow-clockwise"></i>
+
             Refresh Index
+
         </a>
 
     </div>
 
+</div>
+
+<div class="stat-grid">
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <i class="bi bi-file-earmark-code"></i>
+
+        </div>
+
+        <div class="stat-label">
+
+            DXF Files
+
+        </div>
+
+        <div class="stat-value">
+
+            {{ dashboard.total_files }}
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <i class="bi bi-folder2-open"></i>
+
+        </div>
+
+        <div class="stat-label">
+
+            Search Paths
+
+        </div>
+
+        <div class="stat-value">
+
+            {{ dashboard.search_paths }}
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <i class="bi bi-clock-history"></i>
+
+        </div>
+
+        <div class="stat-label">
+
+            Last Index
+
+        </div>
+
+        <div class="stat-value">
+
+            {{ dashboard.last_index }}
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <i class="bi bi-lightning-charge-fill"></i>
+
+        </div>
+
+        <div class="stat-label">
+
+            Engine
+
+        </div>
+
+        <div class="stat-value">
+
+            {{ dashboard.engine }}
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="search-panel">
+
+    <h2>
+
+        <i class="bi bi-search"></i>
+
+        ค้นหาไฟล์ DXF
+
+    </h2>
+
     <form action="/search" method="get">
 
-        <div class="input-group input-group-lg">
+        <div class="input-group">
 
             <input
+
+                type="text"
+
                 class="form-control"
+
                 name="keyword"
-                placeholder="ค้นหาชื่อไฟล์ เช่น PDF DXF STEP..."
+
+                placeholder="เช่น JW0717"
+
+                autocomplete="off"
+
                 autofocus>
 
-            <button class="btn btn-primary">
+            <button
+
+                class="btn btn-primary"
+
+                type="submit">
+
                 <i class="bi bi-search"></i>
-                Search
+
+                ค้นหา
+
             </button>
 
         </div>
 
     </form>
+
+</div>
+<div class="dashboard-card fade-in">
+
+    <div class="dashboard-title">
+
+        ระบบพร้อมทำงาน
+
+    </div>
+
+    <div class="dashboard-sub">
+
+        • ค้นหาไฟล์ DXF ได้ทันที<br>
+        • ส่งไฟล์เข้า Jirasin789 ได้ในคลิกเดียว<br>
+        • ใช้ RAM Index เพื่อความรวดเร็ว
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="dashboard-card">
+
+    <div class="dashboard-title">
+
+        วิธีใช้งาน
+
+    </div>
+
+    <div class="dashboard-sub">
+
+        1. พิมพ์ชื่อไฟล์ เช่น <strong>JW0717</strong><br>
+        2. กดปุ่ม <strong>ค้นหา</strong><br>
+        3. กดปุ่ม <strong>ส่งเข้า Jirasin789</strong>
+
+    </div>
+
+</div>
+
+<div class="footer">
+
+    <strong>JirasinOS</strong><br>
+
+    AI File Search & NAS Transfer System
 
 </div>
 

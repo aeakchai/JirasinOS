@@ -1,95 +1,147 @@
 {% extends "base.html" %}
 
+{% block title %}ค้นหาไฟล์{% endblock %}
+
 {% block content %}
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>
-        <i class="bi bi-search"></i>
-        ผลการค้นหา "{{ keyword }}"
-    </h2>
+<div class="top-header">
 
-    {% if results %}
-    <span class="badge bg-primary fs-6">
-        {{ results|length }} รายการ
-    </span>
-    {% endif %}
+    <div>
+
+        <h1>
+
+            <i class="bi bi-search"></i>
+
+            ผลการค้นหา
+
+        </h1>
+
+        <p>
+
+            คำค้นหา :
+            <strong>{{ keyword }}</strong>
+
+        </p>
+
+    </div>
+
+    <div>
+
+        <a href="/" class="btn btn-primary">
+
+            <i class="bi bi-arrow-left"></i>
+
+            กลับหน้าหลัก
+
+        </a>
+
+    </div>
+
 </div>
 
 {% if message %}
 
-<div class="alert alert-success shadow-sm">
-    <i class="bi bi-check-circle-fill"></i>
+<div class="message">
+
     {{ message }}
+
 </div>
 
 {% endif %}
 
 {% if results %}
 
-{% for item in results %}
+<div class="result-list">
 
-<div class="card shadow-lg border-0 mb-3">
+{% for file in results %}
 
-    <div class="card-body">
+<div class="result-card">
 
-        <div class="d-flex justify-content-between">
+    <div class="result-header">
 
-            <div>
+        <div class="result-icon">
 
-                <h5 class="fw-bold mb-3">
-                    <i class="bi bi-file-earmark-richtext text-primary"></i>
-                    {{ item.name }}
-                </h5>
-
-                <div class="mb-2">
-                    📂 {{ item.folder }}
-                </div>
-
-                <div class="text-muted mb-3">
-
-                    📅 {{ item.modified }}
-
-                    &nbsp;&nbsp;&nbsp;
-
-                    📦 {{ item.size }}
-
-                </div>
-
-            </div>
-
-            <div class="text-end">
-
-                <a
-                    class="btn btn-success btn-lg mb-2"
-                    href="/send?path={{ item.path }}&keyword={{ keyword }}">
-
-                    <i class="bi bi-send-fill"></i>
-
-                    ส่งเข้า Jirasin789
-
-                </a>
-
-                <br>
-
-                <a
-                    class="btn btn-outline-primary btn-sm"
-                    href="/open-folder?path={{ item.path }}&keyword={{ keyword }}">
-
-                    📂 เปิดโฟลเดอร์
-
-                </a>
-
-                <a
-                    class="btn btn-outline-secondary btn-sm"
-                    href="/open-file?path={{ item.path }}&keyword={{ keyword }}">
-
-                    📄 เปิดไฟล์
-
-                </a>
-
-            </div>
+            <i class="bi bi-file-earmark-code"></i>
 
         </div>
+
+        <div>
+
+            {% if file.name is defined %}
+
+            <div class="result-name">
+
+                {{ file.name }}
+
+            </div>
+
+            {% else %}
+
+            <div class="result-name">
+
+                {{ file["name"] }}
+
+            </div>
+
+            {% endif %}
+
+            {% if file.folder is defined %}
+
+            <div class="result-path">
+
+                {{ file.folder }}
+
+            </div>
+
+            {% else %}
+
+            <div class="result-path">
+
+                {{ file["folder"] }}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="result-action">
+        <form action="/send" method="get">
+
+            {% if file.path is defined %}
+
+            <input
+                type="hidden"
+                name="path"
+                value="{{ file.path }}">
+
+            {% else %}
+
+            <input
+                type="hidden"
+                name="path"
+                value="{{ file['path'] }}">
+
+            {% endif %}
+
+            <input
+                type="hidden"
+                name="keyword"
+                value="{{ keyword }}">
+
+            <button
+                type="submit"
+                class="send-btn">
+
+                <i class="bi bi-cloud-arrow-up-fill"></i>
+
+                ส่งเข้า Jirasin789
+
+            </button>
+
+        </form>
 
     </div>
 
@@ -97,16 +149,38 @@
 
 {% endfor %}
 
+</div>
+
 {% else %}
 
-<div class="alert alert-warning shadow-sm">
+<div class="empty-box">
 
-    <i class="bi bi-exclamation-triangle"></i>
+    <i class="bi bi-search"></i>
 
-    ไม่พบไฟล์ DXF
+    <h3>
+
+        ไม่พบไฟล์
+
+    </h3>
+
+    <p>
+
+        ไม่พบไฟล์ที่ตรงกับ
+
+        <strong>{{ keyword }}</strong>
+
+    </p>
 
 </div>
 
 {% endif %}
+
+<div class="footer">
+
+    <strong>JirasinOS</strong><br>
+
+    AI File Search & NAS Transfer System
+
+</div>
 
 {% endblock %}

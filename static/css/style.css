@@ -1,20 +1,67 @@
-body{
+/* =====================================================
+   JirasinOS V2
+   Part 1
+===================================================== */
+
+:root{
+
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --success:#16a34a;
+    --success-dark:#15803d;
+
+    --bg:#f4f7fb;
+    --card:#ffffff;
+
+    --border:#dbe3ef;
+
+    --text:#1f2937;
+    --muted:#6b7280;
+
+    --radius:18px;
+
+    --shadow:
+        0 10px 30px rgba(0,0,0,.08);
+
+    --transition:.25s;
+}
+
+*{
 
     margin:0;
-
-    background:#181818;
-
-    color:white;
-
-    font-family:Segoe UI;
+    padding:0;
+    box-sizing:border-box;
 
 }
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:
+        "Segoe UI",
+        Tahoma,
+        sans-serif;
+
+}
+
+/* ===========================
+   Layout
+=========================== */
 
 .wrapper{
 
     display:flex;
 
-    height:100vh;
+    min-height:100vh;
 
 }
 
@@ -22,33 +69,70 @@ body{
 
     width:250px;
 
-    background:#222;
+    background:#13263d;
 
-    border-right:1px solid #333;
+    color:white;
+
+    position:fixed;
+
+    top:0;
+
+    bottom:0;
+
+    left:0;
+
+    overflow:auto;
+
+    box-shadow:
+        3px 0 20px rgba(0,0,0,.18);
 
 }
 
-.logo{
+.content{
 
-    padding:30px;
+    margin-left:250px;
+
+    width:100%;
+
+    padding:35px;
+
+}
+
+/* ===========================
+   Logo
+=========================== */
+
+.logo{
 
     text-align:center;
 
-    border-bottom:1px solid #333;
+    padding:35px 20px;
+
+    border-bottom:
+
+        1px solid rgba(255,255,255,.08);
 
 }
 
 .logo h3{
 
-    margin:0;
+    font-weight:700;
+
+    margin-bottom:5px;
 
 }
 
 .logo small{
 
-    color:#aaa;
+    color:#9fb3c8;
+
+    letter-spacing:1px;
 
 }
+
+/* ===========================
+   Sidebar Menu
+=========================== */
 
 .sidebar nav{
 
@@ -56,32 +140,1058 @@ body{
 
     flex-direction:column;
 
+    padding:18px;
+
 }
 
 .sidebar nav a{
 
-    color:white;
+    color:#d8e2ee;
 
     text-decoration:none;
 
-    padding:15px 25px;
+    padding:14px 18px;
 
-    transition:.2s;
+    border-radius:12px;
+
+    margin-bottom:8px;
+
+    transition:all .25s;
+
+    font-size:15px;
+
+}
+
+.sidebar nav a i{
+
+    width:24px;
 
 }
 
 .sidebar nav a:hover{
 
-    background:#0d6efd;
+    background:#2563eb;
+
+    color:white;
+
+    transform:translateX(5px);
 
 }
 
-.content{
+/* ===========================
+   Dashboard Card
+=========================== */
 
-    flex:1;
+.card{
 
-    padding:35px;
+    border:none !important;
 
-    overflow:auto;
+    border-radius:18px;
+
+    background:var(--card);
+
+    box-shadow:var(--shadow);
+
+    transition:all .25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+
+.card h6{
+
+    color:var(--muted);
+
+    margin-bottom:10px;
+
+    font-size:14px;
+
+    text-transform:uppercase;
+
+}
+
+.card h3{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    margin:0;
+
+}
+
+.card h5{
+
+    margin:0;
+
+    font-weight:600;
+
+}
+
+/* ===========================
+   Search Title
+=========================== */
+
+.page-title{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:30px;
+
+}
+
+.page-title h2{
+
+    font-weight:700;
+
+    margin:0;
+
+}
+
+.page-title i{
+
+    color:var(--primary);
+
+}
+
+/* ===========================
+   Search Box
+=========================== */
+
+.input-group{
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+}
+
+.form-control{
+
+    border:none;
+
+    height:62px;
+
+    font-size:18px;
+
+    padding-left:22px;
+
+}
+
+.form-control:focus{
+
+    box-shadow:none;
+
+}
+
+.btn{
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:all .25s;
+
+}
+/* =====================================================
+   JirasinOS V2
+   Part 2
+===================================================== */
+
+/* ===========================
+   Buttons
+=========================== */
+
+.btn-primary{
+
+    background:var(--primary);
+    border:none;
+    color:white;
+
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+    transform:translateY(-2px);
+
+}
+
+.btn-success{
+
+    background:var(--success);
+    border:none;
+    color:white;
+
+}
+
+.btn-success:hover{
+
+    background:var(--success-dark);
+    transform:translateY(-2px);
+
+}
+
+/* ===========================
+   Result Card
+=========================== */
+
+.result-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid var(--border);
+
+    margin-bottom:22px;
+
+    padding:24px;
+
+    transition:all .25s;
+
+}
+
+.result-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+        0 18px 35px rgba(0,0,0,.12);
+
+}
+
+.result-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-bottom:18px;
+
+}
+
+.result-icon{
+
+    width:54px;
+
+    height:54px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    font-size:24px;
+
+}
+
+.result-name{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#111827;
+
+    word-break:break-all;
+
+}
+
+.result-path{
+
+    color:#6b7280;
+
+    font-size:15px;
+
+    margin-top:6px;
+
+    word-break:break-all;
+
+}
+
+/* ===========================
+   Action
+=========================== */
+
+.result-action{
+
+    margin-top:25px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+}
+
+.send-btn{
+
+    min-width:250px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:var(--success);
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+.send-btn:hover{
+
+    background:var(--success-dark);
+
+    transform:translateY(-2px);
+
+}
+
+.send-btn i{
+
+    margin-right:10px;
+
+}
+
+/* ===========================
+   Alert
+=========================== */
+
+.message{
+
+    margin-top:25px;
+
+    margin-bottom:30px;
+
+    padding:16px 22px;
+
+    border-radius:14px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    background:#ecfdf5;
+
+    color:#166534;
+
+    border-left:6px solid #22c55e;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+}
+
+/* ===========================
+   Empty
+=========================== */
+
+.empty-box{
+
+    margin-top:50px;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:60px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+}
+
+.empty-box i{
+
+    font-size:70px;
+
+    color:#94a3b8;
+
+    margin-bottom:18px;
+
+}
+
+.empty-box h3{
+
+    margin-bottom:10px;
+
+    font-weight:700;
+
+}
+
+.empty-box p{
+
+    color:#64748b;
+
+    margin:0;
+
+}
+
+/* ===========================
+   Badge
+=========================== */
+
+.badge-online{
+
+    display:inline-block;
+
+    padding:7px 14px;
+
+    border-radius:999px;
+
+    background:#dcfce7;
+
+    color:#166534;
+
+    font-weight:700;
+
+    font-size:13px;
+
+}
+/* =====================================================
+   JirasinOS V2
+   Part 3
+===================================================== */
+
+/* ===========================
+   Dashboard Cards
+=========================== */
+
+.dashboard-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid var(--border);
+
+    height:100%;
+
+    transition:all .25s;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.dashboard-title{
+
+    color:#64748b;
+
+    font-size:14px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    margin-bottom:12px;
+
+}
+
+.dashboard-value{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+.dashboard-sub{
+
+    color:#64748b;
+
+    margin-top:8px;
+
+    font-size:14px;
+
+}
+
+/* ===========================
+   Search Area
+=========================== */
+
+.search-panel{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    margin-top:25px;
+
+    margin-bottom:35px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.search-panel h2{
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+}
+
+.search-panel .input-group{
+
+    border:2px solid #dbe3ef;
+
+    box-shadow:none;
+
+}
+
+.search-panel .input-group:focus-within{
+
+    border-color:#2563eb;
+
+}
+
+.search-panel .btn{
+
+    min-width:170px;
+
+    font-size:17px;
+
+}
+
+/* ===========================
+   Result List
+=========================== */
+
+.result-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/* ===========================
+   File Name
+=========================== */
+
+.file-name{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+.file-folder{
+
+    color:#64748b;
+
+    font-size:15px;
+
+    margin-top:8px;
+
+    word-break:break-all;
+
+}
+
+/* ===========================
+   Success Button
+=========================== */
+
+.send-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+}
+
+.send-btn:hover{
+
+    color:white;
+
+    text-decoration:none;
+
+}
+
+/* ===========================
+   Refresh Button
+=========================== */
+
+.refresh-btn{
+
+    border-radius:14px;
+
+    padding:12px 24px;
+
+    font-weight:700;
+
+}
+
+/* ===========================
+   Page Animation
+=========================== */
+
+.result-card{
+
+    animation:fadeUp .35s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#eef2f7;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#94a3b8;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#64748b;
+
+}
+
+/* ===========================
+   Selection
+=========================== */
+
+::selection{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+/* =====================================================
+   JirasinOS V2
+   Part 4 (Final)
+===================================================== */
+
+/* ===========================
+   Top Header
+=========================== */
+
+.top-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.top-header h1{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    margin:0;
+
+    color:#0f172a;
+
+}
+
+.top-header p{
+
+    margin-top:8px;
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+/* ===========================
+   Statistic Cards
+=========================== */
+
+.stat-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:22px;
+
+    margin-bottom:35px;
+
+}
+
+.stat-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:28px;
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow);
+
+    transition:.25s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.stat-icon{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:26px;
+
+    margin-bottom:18px;
+
+}
+
+.stat-label{
+
+    color:#64748b;
+
+    font-size:14px;
+
+    margin-bottom:8px;
+
+}
+
+.stat-value{
+
+    font-size:30px;
+
+    font-weight:800;
+
+    color:#111827;
+
+}
+
+/* ===========================
+   Hover Effect
+=========================== */
+
+button,
+.btn,
+.send-btn{
+
+    transition:all .25s;
+
+}
+
+button:hover,
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+button:active,
+.btn:active{
+
+    transform:scale(.98);
+
+}
+
+/* ===========================
+   Link
+=========================== */
+
+a{
+
+    text-decoration:none;
+
+}
+
+a:hover{
+
+    text-decoration:none;
+
+}
+
+/* ===========================
+   HR
+=========================== */
+
+hr{
+
+    border:none;
+
+    height:1px;
+
+    background:#e5e7eb;
+
+    margin:35px 0;
+
+}
+
+/* ===========================
+   Footer
+=========================== */
+
+.footer{
+
+    margin-top:60px;
+
+    text-align:center;
+
+    color:#94a3b8;
+
+    font-size:14px;
+
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media(max-width:1200px){
+
+    .stat-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .content{
+
+        margin-left:0;
+
+        padding:22px;
+
+    }
+
+    .sidebar{
+
+        display:none;
+
+    }
+
+    .top-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .stat-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .page-title{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:18px;
+
+    }
+
+    .result-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .result-action{
+
+        justify-content:stretch;
+
+    }
+
+    .send-btn{
+
+        width:100%;
+
+    }
+
+    .search-panel{
+
+        padding:20px;
+
+    }
+
+    .card-body{
+
+        padding:20px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .top-header h1{
+
+        font-size:28px;
+
+    }
+
+    .dashboard-value{
+
+        font-size:28px;
+
+    }
+
+    .form-control{
+
+        font-size:16px;
+
+        height:56px;
+
+    }
+
+    .search-panel .btn{
+
+        min-width:120px;
+
+    }
+
+}
+
+/* ===========================
+   Finish
+=========================== */
+
+.fade-in{
+
+    animation:fadeUp .35s ease;
+
+}
+
+.glass{
+
+    backdrop-filter:blur(12px);
 
 }
