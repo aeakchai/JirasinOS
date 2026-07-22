@@ -1,0 +1,18 @@
+# Version control and local environment files
+.git/
+.env
+.venv/
+venv/
+
+# Python cache and test output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

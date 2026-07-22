@@ -1,0 +1,38 @@
+services:
+  jirasinos:
+    container_name: jirasinos
+
+    build:
+      context: .
+      args:
+        PUID: ${PUID:-1007}
+        PGID: ${PGID:-10}
+
+    env_file:
+      - .env
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - /volume1/JACK:/data/JACK
+      - /volume1/jirasin789:/data/jirasin789
+      - /mnt/windows:/mnt/windows:ro
+
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+
+    command:
+      - tunnel
+      - --no-autoupdate
+      - run
+      - --token
+      - ${CLOUDFLARE_TUNNEL_TOKEN}
+
+    restart: unless-stopped
+
+    depends_on:
+      - jirasinos
